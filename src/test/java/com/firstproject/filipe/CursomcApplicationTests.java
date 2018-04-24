@@ -1,4 +1,4 @@
-package com.cursomc.filipe;
+package com.firstproject.filipe;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
