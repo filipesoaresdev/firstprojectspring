@@ -13,6 +13,7 @@ import com.firstproject.filipe.domain.Category;
 import com.firstproject.filipe.domain.City;
 import com.firstproject.filipe.domain.Client;
 import com.firstproject.filipe.domain.Demand;
+import com.firstproject.filipe.domain.ItemDemand;
 import com.firstproject.filipe.domain.Payment;
 import com.firstproject.filipe.domain.PaymentCard;
 import com.firstproject.filipe.domain.PaymentSlip;
@@ -25,6 +26,7 @@ import com.firstproject.filipe.repositories.CategoryRepository;
 import com.firstproject.filipe.repositories.CityRepository;
 import com.firstproject.filipe.repositories.ClientRepository;
 import com.firstproject.filipe.repositories.DemandRepository;
+import com.firstproject.filipe.repositories.ItemDemandRepository;
 import com.firstproject.filipe.repositories.PaymentRepository;
 import com.firstproject.filipe.repositories.ProductRepository;
 import com.firstproject.filipe.repositories.StateRepository;
@@ -48,6 +50,8 @@ public class FirstApplication implements CommandLineRunner {
 	private DemandRepository demandRepository;
 	@Autowired
 	private PaymentRepository paymentRepository;
+	@Autowired
+	private ItemDemandRepository itemDemandRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(FirstApplication.class, args);
@@ -111,8 +115,20 @@ public class FirstApplication implements CommandLineRunner {
 		client1.getOrders().addAll(Arrays.asList(demand1,demand2));
 
 		demandRepository.saveAll(Arrays.asList(demand1,demand2));
-		
 		paymentRepository.saveAll(Arrays.asList(pay1,pay2));
+		
+		ItemDemand itemDemand1 = new ItemDemand(p1, demand1, 0.00, 1, 2000.00);
+		ItemDemand itemDemand2 = new ItemDemand(p3, demand1, 0.00, 2, 80.00);
+		ItemDemand itemDemand3 = new ItemDemand(p2, demand2, 100.00, 1, 800.00);
+		
+		demand1.getItens().addAll(Arrays.asList(itemDemand1,itemDemand2));
+		demand2.getItens().addAll(Arrays.asList(itemDemand3));
+
+		p1.getItens().addAll(Arrays.asList(itemDemand1));
+		p2.getItens().addAll(Arrays.asList(itemDemand3));
+		p3.getItens().addAll(Arrays.asList(itemDemand2));
+		
+		itemDemandRepository.saveAll(Arrays.asList(itemDemand1,itemDemand2,itemDemand3));
 		
 	}
 }
