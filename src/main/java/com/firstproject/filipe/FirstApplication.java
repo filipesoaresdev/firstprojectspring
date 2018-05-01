@@ -1,5 +1,6 @@
 package com.firstproject.filipe;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,20 @@ import com.firstproject.filipe.domain.Address;
 import com.firstproject.filipe.domain.Category;
 import com.firstproject.filipe.domain.City;
 import com.firstproject.filipe.domain.Client;
+import com.firstproject.filipe.domain.Demand;
+import com.firstproject.filipe.domain.Payment;
+import com.firstproject.filipe.domain.PaymentCard;
+import com.firstproject.filipe.domain.PaymentSlip;
 import com.firstproject.filipe.domain.Product;
 import com.firstproject.filipe.domain.State;
 import com.firstproject.filipe.domain.enums.ClientType;
+import com.firstproject.filipe.domain.enums.PaymentState;
 import com.firstproject.filipe.repositories.AddressRepository;
 import com.firstproject.filipe.repositories.CategoryRepository;
 import com.firstproject.filipe.repositories.CityRepository;
 import com.firstproject.filipe.repositories.ClientRepository;
+import com.firstproject.filipe.repositories.DemandRepository;
+import com.firstproject.filipe.repositories.PaymentRepository;
 import com.firstproject.filipe.repositories.ProductRepository;
 import com.firstproject.filipe.repositories.StateRepository;
 
@@ -36,6 +44,10 @@ public class FirstApplication implements CommandLineRunner {
 	private AddressRepository addressRepository;
 	@Autowired
 	private ClientRepository clientRepository;
+	@Autowired
+	private DemandRepository demandRepository;
+	@Autowired
+	private PaymentRepository paymentRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(FirstApplication.class, args);
@@ -86,7 +98,21 @@ public class FirstApplication implements CommandLineRunner {
 		clientRepository.save(client1);
 		addressRepository.saveAll(Arrays.asList(add1,add2));
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		Demand demand1 = new Demand(null,sdf.parse("30/09/2017 10:30"),client1,add1);
+		Demand demand2 = new Demand(null,sdf.parse("10/10/2017 22:10"),client1,add2);
 		
+		Payment pay1 = new PaymentCard(null,PaymentState.SETTLED.getCode(),demand1,6);
+		demand1.setPayment(pay1);
+		Payment pay2 = new PaymentSlip(null, PaymentState.PENDING.getCode(), demand2, sdf.parse("02/02/2018 15:13"), null);
+		demand2.setPayment(pay2);
+		
+
+		client1.getOrders().addAll(Arrays.asList(demand1,demand2));
+
+		demandRepository.saveAll(Arrays.asList(demand1,demand2));
+		
+		paymentRepository.saveAll(Arrays.asList(pay1,pay2));
 		
 	}
 }

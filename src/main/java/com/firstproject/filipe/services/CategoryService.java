@@ -1,5 +1,8 @@
 package com.firstproject.filipe.services;
-
+/**
+ * @author Filipe
+ * 
+ */
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,7 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
-	
+	//Get the category from the database by id
 	public Category buscar(Integer id) {
 		
 		Optional<Category> object = categoryRepository.findById(id);

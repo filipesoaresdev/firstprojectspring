@@ -20,6 +20,7 @@ public class ResourceCategory {
 	@Autowired
 	private CategoryService service;
 	
+	//Find Category by id
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		

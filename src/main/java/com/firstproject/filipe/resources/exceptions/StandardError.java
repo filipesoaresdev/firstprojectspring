@@ -1,5 +1,11 @@
 package com.firstproject.filipe.resources.exceptions;
 
+/**Class for Standar Errors
+ * 
+ * @author Filipe Soares
+ *
+ */
+
 public class StandardError {
 
 	

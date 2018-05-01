@@ -1,5 +1,9 @@
 package com.firstproject.filipe.services.exceptions;
-
+/**
+ * 
+ * @author Filipe
+ *
+ */
 public class ObjectNotFoundException extends RuntimeException {
 
 	/**
