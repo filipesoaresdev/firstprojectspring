@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Payment implements Serializable {
@@ -23,9 +25,11 @@ public abstract class Payment implements Serializable {
 	private Integer id;
 	private Integer paymentState;
 	
+	
 	@OneToOne
 	@JoinColumn(name="demand_id")
 	@MapsId
+	@JsonBackReference
 	private Demand demand;
 
 	public Payment() {

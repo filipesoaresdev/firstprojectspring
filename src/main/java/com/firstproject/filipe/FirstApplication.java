@@ -112,7 +112,7 @@ public class FirstApplication implements CommandLineRunner {
 		demand2.setPayment(pay2);
 		
 
-		client1.getOrders().addAll(Arrays.asList(demand1,demand2));
+		client1.getDemands().addAll(Arrays.asList(demand1,demand2));
 
 		demandRepository.saveAll(Arrays.asList(demand1,demand2));
 		paymentRepository.saveAll(Arrays.asList(pay1,pay2));
