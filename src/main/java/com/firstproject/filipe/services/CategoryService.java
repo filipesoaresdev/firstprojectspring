@@ -6,10 +6,12 @@ package com.firstproject.filipe.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.firstproject.filipe.domain.Category;
 import com.firstproject.filipe.repositories.CategoryRepository;
+import com.firstproject.filipe.services.exceptions.DataIntegrityException;
 import com.firstproject.filipe.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -36,6 +38,15 @@ public class CategoryService {
 	public Category update(Category category) {
 		find(category.getId());
 		return categoryRepository.save(category);
+	}
+
+	public void delete(Integer id) {
+		find(id);
+		try {
+		categoryRepository.deleteById(id);
+		}catch (DataIntegrityViolationException e) {//Exception launched when try to delete a category with products
+			throw new DataIntegrityException("It is no possible delete a category with products.");
+		}
 	}
 	
 	
