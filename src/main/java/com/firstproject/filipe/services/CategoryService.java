@@ -19,7 +19,7 @@ public class CategoryService {
 	private CategoryRepository categoryRepository;
 	
 	//Get the category from the database by id
-	public Category buscar(Integer id) {
+	public Category find(Integer id) {
 		
 		Optional<Category> object = categoryRepository.findById(id);
 		
@@ -30,6 +30,11 @@ public class CategoryService {
 
 	public Category insert(Category category) {
 		category.setId(null);
+		return categoryRepository.save(category);
+	}
+
+	public Category update(Category category) {
+		find(category.getId());
 		return categoryRepository.save(category);
 	}
 	
