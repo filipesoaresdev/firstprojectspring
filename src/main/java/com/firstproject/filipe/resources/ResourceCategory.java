@@ -33,8 +33,9 @@ public class ResourceCategory {
 	
 	//Find Category by id
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public ResponseEntity<Category> find(@PathVariable Integer id) {
-		
+	public ResponseEntity<Category> find(@PathVariable Integer id) {//@PathVariable annotation which indicates
+																	//that a method parameter should be bound to
+																	//a URI template variable
 		Category category = service.find(id);
 	
 		return ResponseEntity.ok().body(category);
