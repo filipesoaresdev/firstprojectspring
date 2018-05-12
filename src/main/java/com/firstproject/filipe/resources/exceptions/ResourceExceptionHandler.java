@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.firstproject.filipe.services.exceptions.DataIntegrityException;
 import com.firstproject.filipe.services.exceptions.ObjectNotFoundException;
 
+
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
@@ -23,7 +24,7 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(standardError);
 		
 	}
-	
+	//Exception is launched when try to delete a instance with associated children.
 	@ExceptionHandler(DataIntegrityException.class)
 	public ResponseEntity<StandardError> dataIntegrity(DataIntegrityException e, HttpServletRequest request){
 		

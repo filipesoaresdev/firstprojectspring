@@ -1,4 +1,5 @@
 package com.firstproject.filipe.services;
+import java.util.List;
 /**
  * @author Filipe
  * 
@@ -35,11 +36,13 @@ public class CategoryService {
 		return categoryRepository.save(category);
 	}
 
+	//Update a Category
 	public Category update(Category category) {
 		find(category.getId());
 		return categoryRepository.save(category);
 	}
 
+	//delete a category by Id
 	public void delete(Integer id) {
 		find(id);
 		try {
@@ -47,6 +50,12 @@ public class CategoryService {
 		}catch (DataIntegrityViolationException e) {//Exception launched when try to delete a category with products
 			throw new DataIntegrityException("It is no possible delete a category with products.");
 		}
+	}
+
+	//List of categories
+	public List<Category> findAll() {
+		
+		return categoryRepository.findAll();
 	}
 	
 	
