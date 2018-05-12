@@ -62,6 +62,12 @@ public class FirstApplication implements CommandLineRunner {
 		
 		Category cat1 =  new Category(null, "Computer");
 		Category cat2 = new Category(null, "Office");
+		Category cat3 = new Category(null, "Kitchen");
+		Category cat4 = new Category(null, "Home");
+		Category cat5 = new Category(null, "Geek");
+		Category cat6 = new Category(null, "Games");
+		Category cat7 = new Category(null, "Toys");
+		Category cat8 = new Category(null, "Cleaning");
 		
 		Product p1 = new Product(null, "Computer", 2000.00);
 		Product p2 = new Product(null, "Printer", 800.00);
@@ -74,7 +80,7 @@ public class FirstApplication implements CommandLineRunner {
 		p2.getCategories().addAll(Arrays.asList(cat1,cat2));
 		p3.getCategories().addAll(Arrays.asList(cat1));
 
-		categoryRepository.saveAll(Arrays.asList(cat1,cat2));
+		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7,cat8));
 		productRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
 		State state1 = new State(null,"Piauí");
