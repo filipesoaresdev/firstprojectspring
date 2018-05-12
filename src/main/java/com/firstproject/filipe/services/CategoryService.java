@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.firstproject.filipe.domain.Category;
+import com.firstproject.filipe.dto.CategoryDTO;
 import com.firstproject.filipe.repositories.CategoryRepository;
 import com.firstproject.filipe.services.exceptions.DataIntegrityException;
 import com.firstproject.filipe.services.exceptions.ObjectNotFoundException;
@@ -67,5 +68,8 @@ public class CategoryService {
 		return categoryRepository.findAll(pageRequest);
 	}
 	
+	public Category fromDTO(CategoryDTO categoryDTO) {
+		return new Category(categoryDTO.getId(),categoryDTO.getName());
+	}
 	
 }

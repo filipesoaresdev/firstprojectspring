@@ -5,6 +5,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +43,9 @@ public class ResourceCategory {
 	}
 	//This annotation says that here is a Post Request.
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Category category){ //The @RequestBody annotation 
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoryDTO categoryDTO){ //The @RequestBody annotation 
 																		//is declared to convert json on object
-		
+		Category category = service.fromDTO(categoryDTO);
 		category = service.insert(category);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(category.getId())
@@ -53,8 +55,10 @@ public class ResourceCategory {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Category category, @PathVariable Integer id){
-	    category.setId(id);
+	public ResponseEntity<Void> update(@RequestBody CategoryDTO categoryDTO, 
+										@PathVariable Integer id){
+	    Category category = service.fromDTO(categoryDTO);
+		category.setId(id);
 		category = service.update(category);
 		return ResponseEntity.noContent().build();
 	}
