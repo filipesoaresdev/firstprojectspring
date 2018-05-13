@@ -2,6 +2,8 @@ package com.firstproject.filipe.domain;
 
 import javax.persistence.Entity;
 
+import com.firstproject.filipe.domain.enums.PaymentState;
+
 
 @Entity
 public class PaymentCard extends Payment {
@@ -17,7 +19,7 @@ public class PaymentCard extends Payment {
 	}
 	
 	
-	public PaymentCard(Integer id, Integer paymentState, Demand demand, Integer installmentsNumber) {
+	public PaymentCard(Integer id, PaymentState paymentState, Demand demand, Integer installmentsNumber) {
 		super(id, paymentState, demand);
 		this.installmentsNumber = installmentsNumber;
 	}

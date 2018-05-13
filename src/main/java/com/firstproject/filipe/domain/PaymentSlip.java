@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.firstproject.filipe.domain.enums.PaymentState;
 
 
 @Entity
@@ -23,7 +24,7 @@ public class PaymentSlip extends Payment {
 		
 	}
 
-	public PaymentSlip(Integer id, Integer paymentState, Demand demand, Date dueDate, Date payDate) {
+	public PaymentSlip(Integer id, PaymentState paymentState, Demand demand, Date dueDate, Date payDate) {
 		super(id, paymentState, demand);
 		this.dueDate = dueDate;
 		this.payDate = payDate;

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.firstproject.filipe.domain.Client;
 import com.firstproject.filipe.dto.ClientDTO;
+import com.firstproject.filipe.dto.ClientNewDTO;
 import com.firstproject.filipe.services.ClientService;
 
 @RestController
@@ -39,14 +40,14 @@ public class ClientResource {
 		
 	}
 	
-//	@RequestMapping(method=RequestMethod.POST)
-//	public ResponseEntity<Void> insert(@Valid @RequestBody ClientDTO clientDTO){
-//		Client client = clientService.fromDTO(clientDTO);
-//		client = clientService.insert(client);
-//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(client.getId()).toUri();
-//		return ResponseEntity.created(uri).build();
-//		
-//	}
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClientNewDTO clientNewDTO){
+		Client client = clientService.fromClientNewDTO(clientNewDTO);
+		client = clientService.insert(client);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(client.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+		
+	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody ClientDTO clientDTO, @PathVariable Integer id){

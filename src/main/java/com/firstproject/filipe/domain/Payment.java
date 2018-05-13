@@ -11,6 +11,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.firstproject.filipe.domain.enums.PaymentState;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -36,10 +37,10 @@ public abstract class Payment implements Serializable {
 		
 	}
 
-	public Payment(Integer id, Integer paymentState,Demand demand) {
+	public Payment(Integer id, PaymentState paymentState,Demand demand) {
 		super();
 		this.id = id;
-		this.paymentState = paymentState;
+		this.paymentState =(paymentState==null)?null: paymentState.getCode();
 		this.demand = demand;
 	}
 

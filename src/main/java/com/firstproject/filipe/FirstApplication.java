@@ -112,9 +112,9 @@ public class FirstApplication implements CommandLineRunner {
 		Demand demand1 = new Demand(null,sdf.parse("30/09/2017 10:30"),client1,add1);
 		Demand demand2 = new Demand(null,sdf.parse("10/10/2017 22:10"),client1,add2);
 		
-		Payment pay1 = new PaymentCard(null,PaymentState.SETTLED.getCode(),demand1,6);
+		Payment pay1 = new PaymentCard(null,PaymentState.SETTLED,demand1,6);
 		demand1.setPayment(pay1);
-		Payment pay2 = new PaymentSlip(null, PaymentState.PENDING.getCode(), demand2, sdf.parse("02/02/2018 15:13"), null);
+		Payment pay2 = new PaymentSlip(null, PaymentState.PENDING, demand2, sdf.parse("02/02/2018 15:13"), null);
 		demand2.setPayment(pay2);
 		
 
