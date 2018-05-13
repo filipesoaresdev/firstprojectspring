@@ -2,24 +2,41 @@ package com.firstproject.filipe.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.firstproject.filipe.services.validation.ClientInsert;
+
+@ClientInsert
 public class ClientNewDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	//Client
+	@NotEmpty(message="Required.")
+	@Length(min=5,max=120, message="String size must been between 5 and 120 characters.")
 	private String name;
+	@NotEmpty(message="Required.")
+	@Email(message="Invalid E-mail.")
 	private String email;
+	@NotEmpty(message="Required.")
 	private String cpfOrCnpj;
 	private Integer clientType;
 	
 	//Address
+	@NotEmpty(message="Required.")
 	private String street;
+	@NotEmpty(message="Required.")
 	private String number;
 	private String complement;
 	private String neighborhood;
+	@NotEmpty(message="Required.")
 	private String zipCode;
 	
 	//Phone
+	@NotEmpty(message="Required.")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
