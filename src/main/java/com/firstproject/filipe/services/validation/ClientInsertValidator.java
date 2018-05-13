@@ -57,6 +57,6 @@ public class ClientInsertValidator implements
 		
 		return list.isEmpty();
 		
-	}; 
+	}
 	
 }
