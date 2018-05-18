@@ -24,7 +24,7 @@ public class City implements Serializable {
 	private Integer id;
 	private String name;
 	
-	@JsonBackReference
+	@JsonBackReference("stateCity")
 	@ManyToOne
 	@JoinColumn(name="state_id")
 	private State state;

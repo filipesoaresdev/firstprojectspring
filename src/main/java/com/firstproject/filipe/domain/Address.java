@@ -27,7 +27,7 @@ public class Address implements Serializable {
 	private String neighborhood;
 	private String zipCode;
 	
-	@JsonBackReference
+	@JsonBackReference("clientAddress")
 	@ManyToOne
 	@JoinColumn(name="client_id")
 	private Client client;

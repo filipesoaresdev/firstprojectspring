@@ -14,9 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.firstproject.filipe.domain.enums.PaymentState;
+import com.firstproject.filipe.repositories.PaymentRepository;
 
 @Entity
 public class Demand implements Serializable {
@@ -32,10 +35,9 @@ public class Demand implements Serializable {
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date orderTime;
 	
-	@JsonManagedReference
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="demand")
 	private Payment payment;
-	@JsonManagedReference
+	
 	@ManyToOne
 	@JoinColumn(name="client_id")
 	private Client client;
@@ -59,6 +61,14 @@ public class Demand implements Serializable {
 		this.deliveryAddress = deliveryAddress;
 	}
 
+	public double getTotalValor() {
+		double sum=0.0;
+		for(ItemDemand item: itens) {
+			sum  += item.getSubTotal();
+		}
+		return sum;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -132,6 +142,8 @@ public class Demand implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 
 	
 	

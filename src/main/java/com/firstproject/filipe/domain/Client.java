@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.firstproject.filipe.domain.enums.ClientType;
 
@@ -37,7 +38,7 @@ public class Client implements Serializable {
 	private String cpfOrCnpj;
 	private Integer clientType;
 	
-	@JsonManagedReference
+	@JsonManagedReference("clientAddress")
 	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
 	private List<Address> addresses = new ArrayList<>();
 	
@@ -46,7 +47,7 @@ public class Client implements Serializable {
 	@CollectionTable(name="TELEFONE")
 	private Set<String> phones = new HashSet<>();
 	
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy="client")
 	private List<Demand> demands = new ArrayList<>();
 	
@@ -129,9 +130,6 @@ public class Client implements Serializable {
 		this.demands = demands;
 	}
 
-	public void setClientType(Integer clientType) {
-		this.clientType = clientType;
-	}
 
 	@Override
 	public int hashCode() {

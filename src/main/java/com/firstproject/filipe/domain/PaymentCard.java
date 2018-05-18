@@ -2,10 +2,12 @@ package com.firstproject.filipe.domain;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.firstproject.filipe.domain.enums.PaymentState;
 
 
 @Entity
+@JsonTypeName("paymentCard")
 public class PaymentCard extends Payment {
 
 	/**

@@ -5,10 +5,12 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.firstproject.filipe.domain.enums.PaymentState;
 
 
 @Entity
+@JsonTypeName("paymentSlip")
 public class PaymentSlip extends Payment {
 	
 	/**
