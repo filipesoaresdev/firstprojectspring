@@ -32,6 +32,7 @@ public class DemandResource {
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody Demand demand){
 		
+		
 		demand = demandService.insert(demand);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(demand.getId()).toUri();
