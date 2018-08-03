@@ -91,6 +91,17 @@ public class ItemDemand implements Serializable {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(getProduct().getName());
+		builder.append("");
+		return builder.toString();
+	}
 	
 	
 	
