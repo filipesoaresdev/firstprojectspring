@@ -55,12 +55,12 @@ public abstract class Payment implements Serializable {
 	}
 
 
-	public Integer getPaymentState() {
-		return paymentState;
+	public PaymentState getPaymentState() {
+		return PaymentState.toEnum(paymentState);
 	}
 
-	public void setPaymentState(Integer paymentState) {
-		this.paymentState = paymentState;
+	public void setPaymentState(PaymentState paymentState) {
+		this.paymentState = paymentState.getCode();
 	}
 
 
