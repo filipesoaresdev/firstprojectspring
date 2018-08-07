@@ -78,7 +78,7 @@ public class DemandService {
 			item.setDemand(demand);
 		}
 		itemDemandRepository.saveAll(demand.getItens());
-		emailService.sendOrderConfirmationEmail(demand);
+		emailService.sendOrderConfirmationHtmlEmail(demand);
 		
 		return demand;
 	}
